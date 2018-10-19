@@ -10,16 +10,28 @@ namespace creche.Controller
     {
         private CrecheEntities banco = new CrecheEntities();
 
-        public void Gravar(Crianca _crianca, Responsavel _responsavel)
+        public void Gravar(Crianca _crianca, long _uidResponsavel)
         {
-            _responsavel.Criancas.Add(_crianca);
+            this.banco.Criancas.Add(_crianca);
+            Responsavel resp = this.ProcurarResponsavelPorUid(_uidResponsavel);
+
+            resp.Criancas.Add(_crianca);
             this.banco.SaveChanges();
         }
 
-        public void Update(Crianca _crianca)
+        public void Update(Crianca _crianca, long _uidReponsavel)
         {
-            Crianca turma = this.ProcurarCriancaPorUid(_crianca.Uid_crianca);
-            //turma.Descricao = _turma.Descricao;
+            Crianca cria = this.ProcurarCriancaPorUid(_crianca.Uid_crianca);
+            this.banco.Criancas.Attach(cria);
+            Responsavel resp = this.ProcurarResponsavelPorUid(_uidReponsavel);
+            cria.Responsavels = new List<Responsavel>();
+            cria.Nome = _crianca.Nome;
+            cria.Sexo = _crianca.Sexo;
+            cria.Ativo = _crianca.Ativo;
+            cria.Dt_nasc = _crianca.Dt_nasc;
+            cria.Uid_turma = _crianca.Uid_turma;
+            
+            resp.Criancas.Add(cria);
             this.banco.SaveChanges();
         }
 
@@ -31,6 +43,16 @@ namespace creche.Controller
         public Crianca ProcurarCriancaPorUid(long _uidCrianca)
         {
             return this.banco.Criancas.Where(c => c.Uid_crianca == _uidCrianca).FirstOrDefault();
+        }
+
+        public Responsavel ProcurarResponsavelPorUid(long _uidResponsavel)
+        {
+            return this.banco.Responsavels.Where(c => c.Uid_responsavel == _uidResponsavel).FirstOrDefault();
+        }
+
+        public Turma ProcurarTurmaPorUid(long _uidResponsavel)
+        {
+            return this.banco.Turmas.Where(c => c.Uid_turma == _uidResponsavel).FirstOrDefault();
         }
 
         public List<Crianca> LoadCriancas()

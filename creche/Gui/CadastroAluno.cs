@@ -30,9 +30,10 @@ namespace Creche.Gui
         {
             this.tb_nome.Text = String.Empty;
             this.dtp_nascimento.Value = DateTime.Now;
-            //this.turma_selector.
+            //this.turma_selector.Turma = ;
             this.cb_feminino.Checked = false;
             this.cb_masculino.Checked = false;
+            this.cb_ativo.Checked = true;
         }
 
         public virtual void ChangeEnable()
@@ -42,7 +43,8 @@ namespace Creche.Gui
             this.btn_novo.Enabled = !edit;
             this.btn_modificar.Enabled = atualiza;
             this.btn_cancelar.Enabled = edit;
-            //this.pn_setas.Enabled = !edit;
+            this.pn_setas.Enabled = !edit;
+            this.cb_ativo.Enabled = atualiza;
         }
 
         private void Btn_novo_Click(object sender, EventArgs e)
@@ -50,7 +52,6 @@ namespace Creche.Gui
             this.edit = true;
             this.ChangeEnable();
             this.Clear();
-            
         }
 
         private bool Valida()
@@ -70,7 +71,7 @@ namespace Creche.Gui
                 this._error = "Nenhuma turma escolhida";
                 return false;
             }
-            if (responsavel_selector.Responsavel.Uid_responsavel == 0)
+            if (responsavel_selector.Responsavel == null)
             {
                 this._error = "Nenhum responsavel escolhido";
                 return false;
@@ -96,16 +97,16 @@ namespace Creche.Gui
                 aluno.Sexo = "M";
             else
                 aluno.Sexo = "F";
-            Responsavel responsavel = this.responsavel_selector.Responsavel;
+            long uidResponsavel = this.responsavel_selector.Responsavel.Uid_responsavel;
             if (!atualiza)
             {
-                this.criancaController.Gravar(aluno, responsavel);
+                this.criancaController.Gravar(aluno, uidResponsavel);
                 MessageBox.Show("Crianca inserida com sucesso");
             }
             else
             {
                 aluno.Uid_crianca = Convert.ToInt64(this.tb_codigo.Text);
-                this.criancaController.Update(aluno);
+                this.criancaController.Update(aluno, uidResponsavel);
                 MessageBox.Show("Crianca alterada com sucesso");
             }
             criancasLista = this.criancaController.LoadCriancas();
@@ -113,7 +114,7 @@ namespace Creche.Gui
             this.edit = this.atualiza = false;
             this.ChangeEnable();
             this.btn_modificar.Enabled = true;
-            //this.Preencher(this.indiceAtual);
+            this.Preencher(this.indiceAtual);
         }
 
         private void cb_masculino_CheckedChanged(object sender, EventArgs e)
@@ -132,21 +133,87 @@ namespace Creche.Gui
         {
             if (this.criancaController == null)
                 this.criancaController = new CriancasController();
+            this.criancasLista = criancaController.LoadCriancas();
+            if(this.criancasLista.Count > 0)
+            {
+                this.Preencher(this.indiceAtual);
+                this.btn_modificar.Enabled = true;
+            }
+            
         }
 
         private void btn_modificar_Click(object sender, EventArgs e)
         {
-
+            this.atualiza = this.edit = true;
+            this.ChangeEnable();
         }
 
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
-
+            this.edit = false;
+            this.ChangeEnable();
+            this.btn_modificar.Enabled = true;
+            this.Preencher(this.indiceAtual);
         }
 
         private void btn_deletar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_primeiro_Click(object sender, EventArgs e)
+        {
+            if (this.criancasLista.Count > 0)
+            {
+                indiceAtual = 0;
+                Preencher(indiceAtual);
+            }
+        }
+
+        private void btn_anterior_Click(object sender, EventArgs e)
+        {
+            if (indiceAtual > 0)
+            {
+                indiceAtual -= 1;
+                Preencher(indiceAtual);
+            }
+        }
+
+        private void btn_proximo_Click(object sender, EventArgs e)
+        {
+            if (indiceAtual < this.criancasLista.Count - 1)
+            {
+                indiceAtual += 1;
+                Preencher(indiceAtual);
+            }
+        }
+
+        private void btn_ultimo_Click(object sender, EventArgs e)
+        {
+            if (this.criancasLista.Count > 0)
+            {
+                indiceAtual = this.criancasLista.Count - 1;
+                Preencher(indiceAtual);
+            }
+        }
+
+        public void Preencher(int index)
+        {
+            if (this.criancasLista.Count > 0)
+            {
+                Crianca crianca = criancasLista[index];
+                this.tb_codigo.Text = Convert.ToString(crianca.Uid_crianca);
+                this.tb_nome.Text = crianca.Nome;
+                this.dtp_nascimento.Value = crianca.Dt_nasc.Value;
+                if (crianca.Sexo == "M")
+                    this.cb_masculino.Checked = true;
+                else
+                    this.cb_feminino.Checked = true;
+                this.cb_ativo.Checked = crianca.Ativo.Value;
+                this.turma_selector.Turma = crianca.Turma;
+                this.responsavel_selector.Responsavel = crianca.Responsavels.FirstOrDefault();
+                this.turma_selector.Turma = crianca.Turma;
+            }
         }
     }
 }
