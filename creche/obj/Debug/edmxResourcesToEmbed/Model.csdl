@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CrecheModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Crianca">
+    <Key>
+      <PropertyRef Name="Uid_crianca" />
+    </Key>
+    <Property Name="Uid_crianca" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Dt_nasc" Type="DateTime" Precision="3" />
+    <Property Name="Uid_turma" Type="Int64" />
+    <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Turma" Relationship="Self.FK__Criancas__Uid_tu__398D8EEE" FromRole="Criancas" ToRole="Turma" />
+    <NavigationProperty Name="Pagamentos" Relationship="Self.FK__Pagamento__Uid_c__47DBAE45" FromRole="Criancas" ToRole="Pagamentos" />
+    <Property Name="Ativo" Type="Boolean" />
+    <NavigationProperty Name="Responsavels" Relationship="CrecheModel.Responsavel_crianca1" FromRole="Crianca" ToRole="Responsavel" />
+  </EntityType>
+  <EntityType Name="Pagamento">
+    <Key>
+      <PropertyRef Name="Uid_pagamento" />
+    </Key>
+    <Property Name="Uid_pagamento" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Valor" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Valor_recebido" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Dt_vencimento" Type="DateTime" Precision="3" />
+    <Property Name="Uid_crianca" Type="Int64" />
+    <NavigationProperty Name="Crianca" Relationship="Self.FK__Pagamento__Uid_c__47DBAE45" FromRole="Pagamentos" ToRole="Criancas" />
+  </EntityType>
+  <EntityType Name="Responsavel">
+    <Key>
+      <PropertyRef Name="Uid_responsavel" />
+    </Key>
+    <Property Name="Uid_responsavel" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ativo" Type="Boolean" />
+    <NavigationProperty Name="Telefones" Relationship="Self.Responsavel_telefone" FromRole="Responsavel" ToRole="Telefone" />
+    <NavigationProperty Name="Criancas" Relationship="CrecheModel.Responsavel_crianca1" FromRole="Responsavel" ToRole="Crianca" />
+  </EntityType>
+  <EntityType Name="Telefone">
+    <Key>
+      <PropertyRef Name="Uid_telefone" />
+    </Key>
+    <Property Name="Uid_telefone" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Numero" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Responsavels" Relationship="Self.Responsavel_telefone" FromRole="Telefone" ToRole="Responsavel" />
+  </EntityType>
+  <EntityType Name="Turma">
+    <Key>
+      <PropertyRef Name="Uid_turma" />
+    </Key>
+    <Property Name="Uid_turma" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descricao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Criancas" Relationship="Self.FK__Criancas__Uid_tu__398D8EEE" FromRole="Turma" ToRole="Criancas" />
+  </EntityType>
+  <Association Name="FK__Criancas__Uid_tu__398D8EEE">
+    <End Role="Turma" Type="Self.Turma" Multiplicity="0..1" />
+    <End Role="Criancas" Type="Self.Crianca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Turma">
+        <PropertyRef Name="Uid_turma" />
+      </Principal>
+      <Dependent Role="Criancas">
+        <PropertyRef Name="Uid_turma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pagamento__Uid_c__47DBAE45">
+    <End Role="Criancas" Type="Self.Crianca" Multiplicity="0..1" />
+    <End Role="Pagamentos" Type="Self.Pagamento" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Criancas">
+        <PropertyRef Name="Uid_crianca" />
+      </Principal>
+      <Dependent Role="Pagamentos">
+        <PropertyRef Name="Uid_crianca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Responsavel_telefone">
+    <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="*" />
+    <End Role="Telefone" Type="Self.Telefone" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="CrecheEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Criancas" EntityType="Self.Crianca" />
+    <EntitySet Name="Pagamentos" EntityType="Self.Pagamento" />
+    <EntitySet Name="Responsavels" EntityType="Self.Responsavel" />
+    <EntitySet Name="Telefones" EntityType="Self.Telefone" />
+    <EntitySet Name="Turmas" EntityType="Self.Turma" />
+    <AssociationSet Name="FK__Criancas__Uid_tu__398D8EEE" Association="Self.FK__Criancas__Uid_tu__398D8EEE">
+      <End Role="Turma" EntitySet="Turmas" />
+      <End Role="Criancas" EntitySet="Criancas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pagamento__Uid_c__47DBAE45" Association="Self.FK__Pagamento__Uid_c__47DBAE45">
+      <End Role="Criancas" EntitySet="Criancas" />
+      <End Role="Pagamentos" EntitySet="Pagamentos" />
+    </AssociationSet>
+    <AssociationSet Name="Responsavel_telefone" Association="Self.Responsavel_telefone">
+      <End Role="Responsavel" EntitySet="Responsavels" />
+      <End Role="Telefone" EntitySet="Telefones" />
+    </AssociationSet>
+    <AssociationSet Name="Responsavel_crianca1" Association="CrecheModel.Responsavel_crianca1">
+      <End Role="Crianca" EntitySet="Criancas" />
+      <End Role="Responsavel" EntitySet="Responsavels" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="Responsavel_crianca1">
+    <End Type="CrecheModel.Crianca" Role="Crianca" Multiplicity="*" />
+    <End Type="CrecheModel.Responsavel" Role="Responsavel" Multiplicity="*" />
+  </Association>
+</Schema>

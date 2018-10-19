@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="633e3ba383e7403592480ea7ad945f24" Name="Diagram1">
+        <EntityTypeShape EntityType="CrecheModel.Crianca" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrecheModel.Pagamento" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrecheModel.Responsavel" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrecheModel.Telefone" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CrecheModel.Turma" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="CrecheModel.FK__Criancas__Uid_tu__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="CrecheModel.FK__Pagamento__Uid_c__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="CrecheModel.Responsavel_telefone" ManuallyRouted="false" />
+        <AssociationConnector Association="CrecheModel.Responsavel_crianca1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
