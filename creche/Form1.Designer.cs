@@ -32,6 +32,7 @@
             this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alunosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.turmasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.responsavelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +50,8 @@
             // 
             this.cadastroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.alunosToolStripMenuItem,
-            this.turmasToolStripMenuItem});
+            this.turmasToolStripMenuItem,
+            this.responsavelToolStripMenuItem});
             this.cadastroToolStripMenuItem.Name = "cadastroToolStripMenuItem";
             this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.cadastroToolStripMenuItem.Text = "Cadastros";
@@ -67,6 +69,13 @@
             this.turmasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.turmasToolStripMenuItem.Text = "Turmas";
             this.turmasToolStripMenuItem.Click += new System.EventHandler(this.TurmasToolStripMenuItem_Click);
+            // 
+            // responsavelToolStripMenuItem
+            // 
+            this.responsavelToolStripMenuItem.Name = "responsavelToolStripMenuItem";
+            this.responsavelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.responsavelToolStripMenuItem.Text = "Responsavel";
+            this.responsavelToolStripMenuItem.Click += new System.EventHandler(this.responsavelToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -90,6 +99,7 @@
         private System.Windows.Forms.ToolStripMenuItem cadastroToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alunosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem turmasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem responsavelToolStripMenuItem;
     }
 }
 

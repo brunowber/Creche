@@ -29,5 +29,11 @@ namespace Creche
             CadastraTurma cadTurma = new CadastraTurma();
             cadTurma.Show();
         }
+
+        private void responsavelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CadastraResponsavel cadastraResponsavel = new CadastraResponsavel();
+            cadastraResponsavel.Show();
+        }
     }
 }

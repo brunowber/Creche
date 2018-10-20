@@ -30,7 +30,6 @@ namespace Creche.Gui
         {
             this.tb_nome.Text = String.Empty;
             this.dtp_nascimento.Value = DateTime.Now;
-            //this.turma_selector.Turma = ;
             this.cb_feminino.Checked = false;
             this.cb_masculino.Checked = false;
             this.cb_ativo.Checked = true;

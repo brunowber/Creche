@@ -16,10 +16,13 @@ namespace creche.Controller
             this.banco.SaveChanges();
         }
 
-        public void Update(Turma _turma)
+        public void Update(Responsavel _responsavel)
         {
-            Turma turma = this.ProcurarTurmaPorUid(_turma.Uid_turma);
-            turma.Descricao = _turma.Descricao;
+            Responsavel responsavel = this.ProcurarResponsavelPorUid(_responsavel.Uid_responsavel);
+            responsavel.Nome = _responsavel.Nome;
+            responsavel.Ativo = _responsavel.Ativo;
+            responsavel.Telefones.Clear();
+            responsavel.Telefones = _responsavel.Telefones;
             this.banco.SaveChanges();
         }
 
@@ -28,9 +31,9 @@ namespace creche.Controller
             return this.banco.Turmas.Any(Turma => Turma.Uid_turma == _uidTurma);
         }
 
-        public Turma ProcurarTurmaPorUid(long _uidTurma)
+        public Responsavel ProcurarResponsavelPorUid(long _uidResponsavel)
         {
-            return this.banco.Turmas.Where(c => c.Uid_turma == _uidTurma).FirstOrDefault();
+            return this.banco.Responsavels.Where(c => c.Uid_responsavel == _uidResponsavel).FirstOrDefault();
         }
 
         public List<Responsavel> LoadResponsavel()
