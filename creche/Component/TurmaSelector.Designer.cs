@@ -39,7 +39,7 @@
             // 
             this.cb_turma.DataSource = this.turmaBindingSource;
             this.cb_turma.FormattingEnabled = true;
-            this.cb_turma.Location = new System.Drawing.Point(48, 14);
+            this.cb_turma.Location = new System.Drawing.Point(48, 3);
             this.cb_turma.Name = "cb_turma";
             this.cb_turma.Size = new System.Drawing.Size(239, 21);
             this.cb_turma.TabIndex = 0;
@@ -48,7 +48,7 @@
             // lbl_turma
             // 
             this.lbl_turma.AutoSize = true;
-            this.lbl_turma.Location = new System.Drawing.Point(5, 17);
+            this.lbl_turma.Location = new System.Drawing.Point(5, 6);
             this.lbl_turma.Name = "lbl_turma";
             this.lbl_turma.Size = new System.Drawing.Size(40, 13);
             this.lbl_turma.TabIndex = 1;
@@ -61,7 +61,7 @@
             this.Controls.Add(this.lbl_turma);
             this.Controls.Add(this.cb_turma);
             this.Name = "TurmaSelector";
-            this.Size = new System.Drawing.Size(290, 39);
+            this.Size = new System.Drawing.Size(290, 27);
             this.Load += new System.EventHandler(this.TurmaSelector_Load);
             ((System.ComponentModel.ISupportInitialize)(this.turmaBindingSource)).EndInit();
             this.ResumeLayout(false);

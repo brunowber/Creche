@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PagamentoDataSet" targetNamespace="http://tempuri.org/PagamentoDataSet.xsd" xmlns:mstns="http://tempuri.org/PagamentoDataSet.xsd" xmlns="http://tempuri.org/PagamentoDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PagamentoDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PagamentoDataSet" msprop:Generator_UserDSName="PagamentoDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Pagamento" msprop:Generator_TableClassName="PagamentoDataTable" msprop:Generator_TableVarName="tablePagamento" msprop:Generator_TablePropName="Pagamento" msprop:Generator_RowDeletingName="PagamentoRowDeleting" msprop:Generator_RowChangingName="PagamentoRowChanging" msprop:Generator_RowEvHandlerName="PagamentoRowChangeEventHandler" msprop:Generator_RowDeletedName="PagamentoRowDeleted" msprop:Generator_UserTableName="Pagamento" msprop:Generator_RowChangedName="PagamentoRowChanged" msprop:Generator_RowEvArgName="PagamentoRowChangeEvent" msprop:Generator_RowClassName="PagamentoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nome" msprop:Generator_ColumnVarNameInTable="columnNome" msprop:Generator_ColumnPropNameInRow="Nome" msprop:Generator_ColumnPropNameInTable="NomeColumn" msprop:Generator_UserColumnName="Nome" type="xs:string" minOccurs="0" />
+              <xs:element name="Valor" msprop:Generator_ColumnVarNameInTable="columnValor" msprop:Generator_ColumnPropNameInRow="Valor" msprop:Generator_ColumnPropNameInTable="ValorColumn" msprop:Generator_UserColumnName="Valor" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Valor_receber" msprop:Generator_ColumnVarNameInTable="columnValor_receber" msprop:Generator_ColumnPropNameInRow="Valor_receber" msprop:Generator_ColumnPropNameInTable="Valor_receberColumn" msprop:Generator_UserColumnName="Valor_receber" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Recebido" msprop:Generator_ColumnVarNameInTable="columnRecebido" msprop:Generator_ColumnPropNameInRow="Recebido" msprop:Generator_ColumnPropNameInTable="RecebidoColumn" msprop:Generator_UserColumnName="Recebido" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Data" msprop:Generator_ColumnVarNameInTable="columnData" msprop:Generator_ColumnPropNameInRow="Data" msprop:Generator_ColumnPropNameInTable="DataColumn" msprop:Generator_UserColumnName="Data" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Codigo_crianca" msprop:Generator_ColumnVarNameInTable="columnCodigo_crianca" msprop:Generator_ColumnPropNameInRow="Codigo_crianca" msprop:Generator_ColumnPropNameInTable="Codigo_criancaColumn" msprop:Generator_UserColumnName="Codigo_crianca" type="xs:long" minOccurs="0" />
+              <xs:element name="Codigo_pagamento" msprop:Generator_ColumnVarNameInTable="columnCodigo_pagamento" msprop:Generator_ColumnPropNameInRow="Codigo_pagamento" msprop:Generator_ColumnPropNameInTable="Codigo_pagamentoColumn" msprop:Generator_UserColumnName="Codigo_pagamento" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

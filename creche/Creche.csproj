@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component\CriancaSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Component\CriancaSelector.Designer.cs">
+      <DependentUpon>CriancaSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="Component\ResponsavelSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -71,6 +77,14 @@
     <Compile Include="Controller\CadastroTurmaController.cs" />
     <Compile Include="Crianca.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\PagamentoDataSet.cs">
+      <DependentUpon>PagamentoDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Dataset\PagamentoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PagamentoDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -90,11 +104,23 @@
     <Compile Include="Gui\CadastraTurma.Designer.cs">
       <DependentUpon>CadastraTurma.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gui\CadastroPagamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\CadastroPagamentos.Designer.cs">
+      <DependentUpon>CadastroPagamentos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gui\CadastroAluno.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gui\CadastroAluno.Designer.cs">
       <DependentUpon>CadastroAluno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Visualizar\VisualizarPagamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Visualizar\VisualizarPagamentos.Designer.cs">
+      <DependentUpon>VisualizarPagamentos.cs</DependentUpon>
     </Compile>
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
@@ -125,6 +151,9 @@
     <Compile Include="Turma.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Component\CriancaSelector.resx">
+      <DependentUpon>CriancaSelector.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Component\ResponsavelSelector.resx">
       <DependentUpon>ResponsavelSelector.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,8 +169,14 @@
     <EmbeddedResource Include="Gui\CadastraTurma.resx">
       <DependentUpon>CadastraTurma.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Gui\CadastroPagamentos.resx">
+      <DependentUpon>CadastroPagamentos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Gui\CadastroAluno.resx">
       <DependentUpon>CadastroAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\Visualizar\VisualizarPagamentos.resx">
+      <DependentUpon>VisualizarPagamentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -156,6 +191,17 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Dataset\PagamentoDataSet.xsc">
+      <DependentUpon>PagamentoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\PagamentoDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PagamentoDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Dataset\PagamentoDataSet.xss">
+      <DependentUpon>PagamentoDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
     </None>

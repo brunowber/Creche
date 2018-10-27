@@ -17,3 +17,7 @@ C:\Users\ASUS\source\repos\creche\creche\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\ASUS\source\repos\creche\creche\obj\Debug\Creche.Gui.CadastraResponsavel.resources
 C:\Users\ASUS\source\repos\creche\creche\obj\Debug\Creche.csproj.CopyComplete
 C:\Users\ASUS\source\repos\creche\creche\obj\Debug\Creche.Component.ResponsavelSelector.resources
+C:\Users\ASUS\source\repos\creche\creche\obj\Debug\Creche.Component.CriancaSelector.resources
+C:\Users\ASUS\source\repos\creche\creche\obj\Debug\Creche.Gui.CadastroPagamentos.resources
+C:\Users\ASUS\source\repos\creche\creche\obj\Debug\creche.Gui.Visualizar.VisualizarPagamentos.resources
+C:\Users\ASUS\source\repos\creche\creche\obj\Debug\Creche.csprojAssemblyReference.cache

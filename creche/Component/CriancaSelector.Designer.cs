@@ -1,6 +1,6 @@
 ﻿namespace Creche.Component
 {
-    partial class ResponsavelSelector
+    partial class CriancaSelector
     {
         /// <summary> 
         /// Variável de designer necessária.
@@ -29,39 +29,39 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.cb_responsavel = new System.Windows.Forms.ComboBox();
+            this.cb_crianca = new System.Windows.Forms.ComboBox();
             this.responsavelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lbl_turma = new System.Windows.Forms.Label();
+            this.lbl_crianca = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.responsavelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // cb_responsavel
+            // cb_crianca
             // 
-            this.cb_responsavel.DataSource = this.responsavelBindingSource;
-            this.cb_responsavel.FormattingEnabled = true;
-            this.cb_responsavel.Location = new System.Drawing.Point(76, 3);
-            this.cb_responsavel.Name = "cb_responsavel";
-            this.cb_responsavel.Size = new System.Drawing.Size(239, 21);
-            this.cb_responsavel.TabIndex = 0;
-            this.cb_responsavel.SelectedIndexChanged += new System.EventHandler(this.cb_turma_SelectedIndexChanged);
+            this.cb_crianca.DataSource = this.responsavelBindingSource;
+            this.cb_crianca.FormattingEnabled = true;
+            this.cb_crianca.Location = new System.Drawing.Point(49, 2);
+            this.cb_crianca.Name = "cb_crianca";
+            this.cb_crianca.Size = new System.Drawing.Size(239, 21);
+            this.cb_crianca.TabIndex = 0;
+            this.cb_crianca.SelectedIndexChanged += new System.EventHandler(this.cb_turma_SelectedIndexChanged);
             // 
-            // lbl_turma
+            // lbl_crianca
             // 
-            this.lbl_turma.AutoSize = true;
-            this.lbl_turma.Location = new System.Drawing.Point(2, 6);
-            this.lbl_turma.Name = "lbl_turma";
-            this.lbl_turma.Size = new System.Drawing.Size(72, 13);
-            this.lbl_turma.TabIndex = 1;
-            this.lbl_turma.Text = "Responsavel:";
+            this.lbl_crianca.AutoSize = true;
+            this.lbl_crianca.Location = new System.Drawing.Point(2, 6);
+            this.lbl_crianca.Name = "lbl_crianca";
+            this.lbl_crianca.Size = new System.Drawing.Size(46, 13);
+            this.lbl_crianca.TabIndex = 1;
+            this.lbl_crianca.Text = "Crianca:";
             // 
-            // ResponsavelSelector
+            // CriancaSelector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lbl_turma);
-            this.Controls.Add(this.cb_responsavel);
-            this.Name = "ResponsavelSelector";
-            this.Size = new System.Drawing.Size(318, 26);
+            this.Controls.Add(this.lbl_crianca);
+            this.Controls.Add(this.cb_crianca);
+            this.Name = "CriancaSelector";
+            this.Size = new System.Drawing.Size(292, 26);
             this.Load += new System.EventHandler(this.TurmaSelector_Load);
             ((System.ComponentModel.ISupportInitialize)(this.responsavelBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -71,8 +71,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cb_responsavel;
-        private System.Windows.Forms.Label lbl_turma;
+        private System.Windows.Forms.ComboBox cb_crianca;
+        private System.Windows.Forms.Label lbl_crianca;
         private System.Windows.Forms.BindingSource responsavelBindingSource;
     }
 }

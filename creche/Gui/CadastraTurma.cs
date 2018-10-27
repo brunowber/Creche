@@ -24,6 +24,8 @@ namespace Creche.Gui
         public CadastraTurma()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.WindowState = System.Windows.Forms.FormWindowState.Normal;
         }
 
         private void ChangeEnable()

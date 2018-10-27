@@ -14,8 +14,14 @@ namespace creche.Controller
         {
             this.banco.Criancas.Add(_crianca);
             Responsavel resp = this.ProcurarResponsavelPorUid(_uidResponsavel);
-
             resp.Criancas.Add(_crianca);
+            this.banco.SaveChanges();
+        }
+
+        public void GravarPagamento(long _uid, Pagamento pagamento)
+        {
+            Crianca cria = this.ProcurarCriancaPorUid(_uid);
+            cria.Pagamentos.Add(pagamento);
             this.banco.SaveChanges();
         }
 
@@ -30,8 +36,20 @@ namespace creche.Controller
             cria.Ativo = _crianca.Ativo;
             cria.Dt_nasc = _crianca.Dt_nasc;
             cria.Uid_turma = _crianca.Uid_turma;
-            
             resp.Criancas.Add(cria);
+            this.banco.SaveChanges();
+        }
+
+        public void DeletarPagamento(long _uidPagamento)
+        {
+            Pagamento pagamento = this.ProcurarPagamentoPorUid(_uidPagamento);
+            this.banco.Pagamentos.Remove(pagamento);
+            this.banco.SaveChanges();
+        }
+
+        public void UpdatePagamento(decimal valorReceber, long _uidPagamento)
+        {
+            Pagamento pagamento = this.ProcurarPagamentoPorUid(_uidPagamento);
             this.banco.SaveChanges();
         }
 
@@ -43,6 +61,11 @@ namespace creche.Controller
         public Crianca ProcurarCriancaPorUid(long _uidCrianca)
         {
             return this.banco.Criancas.Where(c => c.Uid_crianca == _uidCrianca).FirstOrDefault();
+        }
+
+        public Pagamento ProcurarPagamentoPorUid(long _uidPagamento)
+        {
+            return this.banco.Pagamentos.Where(c => c.Uid_pagamento == _uidPagamento).FirstOrDefault();
         }
 
         public Responsavel ProcurarResponsavelPorUid(long _uidResponsavel)
@@ -58,6 +81,31 @@ namespace creche.Controller
         public List<Crianca> LoadCriancas()
         {
             return this.banco.Criancas.ToList();
+        }
+
+        public List<Crianca> ProcuraCriancasPorTurma(long _uidTurma)
+        {
+            return this.banco.Criancas.Where(c => c.Turma.Uid_turma == _uidTurma).ToList();
+        }
+
+        public List<Crianca> ProcuraCriancasPorResponsavel(long _uidResponsavel)
+        {
+            return this.banco.Criancas.Where(c => c.Responsavels.FirstOrDefault().Uid_responsavel == _uidResponsavel).ToList();
+        }
+
+        public List<Crianca> ProcuraCriancasPorNome(string nome)
+        {
+            return this.banco.Criancas.Where(c => c.Nome == nome).ToList();
+        }
+
+        public Pagamento ProcuraPagamentoPorAluno(Crianca crianca)
+        {
+            return this.banco.Pagamentos.Where(c => c.Uid_crianca == crianca.Uid_crianca).FirstOrDefault();
+        }
+
+        public List<Pagamento> ProcuraPagamentoPorData(DateTime começo, DateTime fim)
+        {
+            return this.banco.Pagamentos.Where(c => c.Dt_vencimento >= começo && c.Dt_vencimento <= fim).ToList();
         }
     }
 }

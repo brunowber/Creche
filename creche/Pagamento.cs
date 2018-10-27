@@ -21,5 +21,10 @@ namespace creche
         public Nullable<long> Uid_crianca { get; set; }
     
         public virtual Crianca Crianca { get; set; }
+
+        public override string ToString()
+        {
+            return Valor.ToString();
+        }
     }
 }

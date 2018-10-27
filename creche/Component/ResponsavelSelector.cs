@@ -25,7 +25,7 @@ namespace Creche.Component
         {
             if (this.responsavelController == null)
                 this.responsavelController = new ResponsavelController();
-            this.responsavelBindingSource.DataSource = this.responsavelController.LoadResponsavel();
+            //this.responsavelBindingSource.DataSource = this.responsavelController.LoadResponsavel();
             this.cb_responsavel.SelectedIndex = -1;
             this.cb_responsavel.SelectedItem = null;
         }

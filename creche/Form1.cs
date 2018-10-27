@@ -1,4 +1,5 @@
-﻿using Creche.Gui;
+﻿using creche.Gui.Visualizar;
+using Creche.Gui;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,6 +35,18 @@ namespace Creche
         {
             CadastraResponsavel cadastraResponsavel = new CadastraResponsavel();
             cadastraResponsavel.Show();
+        }
+
+        private void pagamentosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CadastroPagamentos cadastroPagamentos = new CadastroPagamentos();
+            cadastroPagamentos.Show();
+        }
+
+        private void pagamentosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            VisualizarPagamentos visualizarPagamentos = new VisualizarPagamentos();
+            visualizarPagamentos.Show();
         }
     }
 }

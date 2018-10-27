@@ -25,7 +25,7 @@ namespace Creche.Component
         {
             if (this.cadastroTurmaController == null)
                 this.cadastroTurmaController = new CadastroTurmaController();
-            this.turmaBindingSource.DataSource = this.cadastroTurmaController.LoadTurmas();
+            //this.turmaBindingSource.DataSource = this.cadastroTurmaController.LoadTurmas();
             this.cb_turma.SelectedIndex = -1;
             this.cb_turma.SelectedItem = null;
         }

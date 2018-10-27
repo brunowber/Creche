@@ -12,40 +12,33 @@ using System.Windows.Forms;
 
 namespace Creche.Gui
 {
-    public partial class CadastroAluno : Form
+    public partial class CadastroPagamentos : Form
     {
         private bool edit = false;
-        private bool atualiza = false;
         private List<Crianca> criancasLista;
         private int indiceAtual = 0;
         private string _error = String.Empty;
         private CriancasController criancaController;
 
-        public CadastroAluno()
+        public CadastroPagamentos()
         {
             InitializeComponent();
-            this.MaximizeBox = false;
-            this.WindowState = System.Windows.Forms.FormWindowState.Normal;
         }
 
         public virtual void Clear()
         {
-            this.tb_nome.Text = String.Empty;
-            this.dtp_nascimento.Value = DateTime.Now;
-            this.cb_feminino.Checked = false;
-            this.cb_masculino.Checked = false;
-            this.cb_ativo.Checked = true;
+            this.tb_parcelas.Text = "1";
+            this.mtb_valor.Text = "";
+            this.dtp_vencimento.Value = DateTime.Now;
         }
 
         public virtual void ChangeEnable()
         {
             this.btn_salvar.Enabled = edit;
             this.gp_cadastro.Enabled = edit;
-            this.btn_novo.Enabled = !edit;
-            this.btn_modificar.Enabled = atualiza;
+            this.btn_modificar.Enabled = !edit;
             this.btn_cancelar.Enabled = edit;
             this.pn_setas.Enabled = !edit;
-            this.cb_ativo.Enabled = atualiza;
         }
 
         private void Btn_novo_Click(object sender, EventArgs e)
@@ -57,24 +50,14 @@ namespace Creche.Gui
 
         private bool Valida()
         {
-            if (tb_nome.Text == "")
+            if (tb_parcelas.Text == "")
             {
-                this._error = "Campo nome não pode estar vazio";
+                this._error = "Campo parcelas não pode estar vazio";
                 return false;
             }
-            if (cb_feminino.CheckState == this.cb_masculino.CheckState)
+            if (this.mtb_valor.Text.Length < 8)
             {
-                this._error = "É necessário escolher um sexo";
-                return false;
-            }
-            if (turma_selector.Turma == null)
-            {
-                this._error = "Nenhuma turma escolhida";
-                return false;
-            }
-            if (responsavel_selector.Responsavel == null)
-            {
-                this._error = "Nenhum responsavel escolhido";
+                this._error = "Campo valor tem que estar completo";
                 return false;
             }
             return true;
@@ -87,47 +70,25 @@ namespace Creche.Gui
                 MessageBox.Show(this._error);
                 return;
             }
-            Crianca aluno = new Crianca
+            long uid = Convert.ToInt64(this.tb_codigo.Text);
+            for (int i = 0; i < Convert.ToInt32(tb_parcelas.Text); i++)
             {
-                Nome = tb_nome.Text,
-                Dt_nasc = dtp_nascimento.Value,
-                Uid_turma = this.turma_selector.Turma.Uid_turma,
-                Ativo = this.cb_ativo.Checked,
-            };
-            if (this.cb_masculino.CheckState == CheckState.Checked)
-                aluno.Sexo = "M";
-            else
-                aluno.Sexo = "F";
-            long uidResponsavel = this.responsavel_selector.Responsavel.Uid_responsavel;
-            if (!atualiza)
-            {
-                this.criancaController.Gravar(aluno, uidResponsavel);
-                MessageBox.Show("Crianca inserida com sucesso");
+                Pagamento pagamento = new Pagamento
+                {
+                    Valor = Convert.ToDecimal(this.mtb_valor.Text.Substring(2, 6)),
+                    Dt_vencimento = this.dtp_vencimento.Value,
+                    Valor_recebido = 0
+                };
+                this.criancaController.GravarPagamento(uid, pagamento);
+                this.dtp_vencimento.Value = this.dtp_vencimento.Value.AddMonths(1);
             }
-            else
-            {
-                aluno.Uid_crianca = Convert.ToInt64(this.tb_codigo.Text);
-                this.criancaController.Update(aluno, uidResponsavel);
-                MessageBox.Show("Crianca alterada com sucesso");
-            }
+            MessageBox.Show("Pagamento inserida com sucesso");
             criancasLista = this.criancaController.LoadCriancas();
             this.Clear();
-            this.edit = this.atualiza = false;
+            this.edit = false;
             this.ChangeEnable();
             this.btn_modificar.Enabled = true;
             this.Preencher(this.indiceAtual);
-        }
-
-        private void cb_masculino_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.cb_masculino.CheckState == CheckState.Checked)
-                this.cb_feminino.Checked = false;
-        }
-
-        private void cb_feminino_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.cb_feminino.CheckState == CheckState.Checked)
-                this.cb_masculino.Checked = false;
         }
 
         private void CadastroAluno_Load(object sender, EventArgs e)
@@ -145,7 +106,7 @@ namespace Creche.Gui
 
         private void btn_modificar_Click(object sender, EventArgs e)
         {
-            this.atualiza = this.edit = true;
+            this.edit = true;
             this.ChangeEnable();
         }
 
@@ -153,6 +114,7 @@ namespace Creche.Gui
         {
             this.edit = false;
             this.ChangeEnable();
+            this.Clear();
             this.btn_modificar.Enabled = true;
             this.Preencher(this.indiceAtual);
         }
@@ -205,16 +167,12 @@ namespace Creche.Gui
                 Crianca crianca = criancasLista[index];
                 this.tb_codigo.Text = Convert.ToString(crianca.Uid_crianca);
                 this.tb_nome.Text = crianca.Nome;
-                this.dtp_nascimento.Value = crianca.Dt_nasc.Value;
-                if (crianca.Sexo == "M")
-                    this.cb_masculino.Checked = true;
-                else
-                    this.cb_feminino.Checked = true;
-                this.cb_ativo.Checked = crianca.Ativo.Value;
-                this.turma_selector.Turma = crianca.Turma;
-                this.responsavel_selector.Responsavel = crianca.Responsavels.FirstOrDefault();
-                this.turma_selector.Turma = crianca.Turma;
             }
+        }
+
+        private void tb_parcelas_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }
     }
 }
