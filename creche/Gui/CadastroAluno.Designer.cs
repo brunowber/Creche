@@ -327,7 +327,8 @@
             this.Controls.Add(this.gp_cadastro);
             this.Controls.Add(this.panel1);
             this.Name = "CadastroAluno";
-            this.Text = "CadastroCommon";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Cadastro de Alunos";
             this.Load += new System.EventHandler(this.CadastroAluno_Load);
             this.panel1.ResumeLayout(false);
             this.gp_cadastro.ResumeLayout(false);

@@ -30,6 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dg_pagamento = new System.Windows.Forms.DataGridView();
+            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valorreceberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.recebidoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Codigo_pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pagamentoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.pagamentoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pagamentoDataSet = new creche.Dataset.PagamentoDataSet();
@@ -37,6 +43,9 @@
             this.lbl_nome = new System.Windows.Forms.Label();
             this.btn_nome = new System.Windows.Forms.Button();
             this.gb_pagamentos = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_ganho = new System.Windows.Forms.Label();
+            this.btn_deletar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_falta = new System.Windows.Forms.Label();
             this.btn_salvar = new System.Windows.Forms.Button();
@@ -47,15 +56,8 @@
             this.dtp_fim = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.btn_data = new System.Windows.Forms.Button();
-            this.btn_deletar = new System.Windows.Forms.Button();
             this.responsavelSelector = new Creche.Component.ResponsavelSelector();
             this.turmaSelector = new Creche.Component.TurmaSelector();
-            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valorreceberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.recebidoDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Codigo_pagamento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dg_pagamento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pagamentoBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pagamentoBindingSource)).BeginInit();
@@ -85,6 +87,55 @@
             this.dg_pagamento.Size = new System.Drawing.Size(713, 178);
             this.dg_pagamento.TabIndex = 0;
             this.dg_pagamento.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dg_pagamento.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_pagamento_CellValueChanged);
+            this.dg_pagamento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dg_pagamento_KeyDown);
+            // 
+            // nomeDataGridViewTextBoxColumn
+            // 
+            this.nomeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
+            this.nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
+            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
+            this.nomeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // valorDataGridViewTextBoxColumn
+            // 
+            this.valorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.valorDataGridViewTextBoxColumn.DataPropertyName = "Valor";
+            this.valorDataGridViewTextBoxColumn.HeaderText = "Valor";
+            this.valorDataGridViewTextBoxColumn.Name = "valorDataGridViewTextBoxColumn";
+            // 
+            // valorreceberDataGridViewTextBoxColumn
+            // 
+            this.valorreceberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.valorreceberDataGridViewTextBoxColumn.DataPropertyName = "Valor_receber";
+            this.valorreceberDataGridViewTextBoxColumn.HeaderText = "Valor_receber";
+            this.valorreceberDataGridViewTextBoxColumn.MaxInputLength = 7;
+            this.valorreceberDataGridViewTextBoxColumn.Name = "valorreceberDataGridViewTextBoxColumn";
+            // 
+            // dataDataGridViewTextBoxColumn
+            // 
+            this.dataDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataDataGridViewTextBoxColumn.DataPropertyName = "Data";
+            this.dataDataGridViewTextBoxColumn.HeaderText = "Data";
+            this.dataDataGridViewTextBoxColumn.Name = "dataDataGridViewTextBoxColumn";
+            this.dataDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // recebidoDataGridViewCheckBoxColumn
+            // 
+            this.recebidoDataGridViewCheckBoxColumn.DataPropertyName = "Recebido";
+            this.recebidoDataGridViewCheckBoxColumn.FalseValue = "false";
+            this.recebidoDataGridViewCheckBoxColumn.HeaderText = "Recebido";
+            this.recebidoDataGridViewCheckBoxColumn.Name = "recebidoDataGridViewCheckBoxColumn";
+            this.recebidoDataGridViewCheckBoxColumn.TrueValue = "true";
+            this.recebidoDataGridViewCheckBoxColumn.Width = 70;
+            // 
+            // Codigo_pagamento
+            // 
+            this.Codigo_pagamento.DataPropertyName = "Codigo_pagamento";
+            this.Codigo_pagamento.HeaderText = "Codigo_pagamento";
+            this.Codigo_pagamento.Name = "Codigo_pagamento";
+            this.Codigo_pagamento.Visible = false;
             // 
             // pagamentoBindingSource1
             // 
@@ -132,6 +183,8 @@
             this.gb_pagamentos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gb_pagamentos.Controls.Add(this.label3);
+            this.gb_pagamentos.Controls.Add(this.lbl_ganho);
             this.gb_pagamentos.Controls.Add(this.btn_deletar);
             this.gb_pagamentos.Controls.Add(this.label2);
             this.gb_pagamentos.Controls.Add(this.lbl_falta);
@@ -143,6 +196,38 @@
             this.gb_pagamentos.TabIndex = 5;
             this.gb_pagamentos.TabStop = false;
             this.gb_pagamentos.Text = "Pagamentos";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(497, 210);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(42, 13);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Ganho:";
+            // 
+            // lbl_ganho
+            // 
+            this.lbl_ganho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_ganho.AutoSize = true;
+            this.lbl_ganho.ForeColor = System.Drawing.Color.Green;
+            this.lbl_ganho.Location = new System.Drawing.Point(541, 210);
+            this.lbl_ganho.Name = "lbl_ganho";
+            this.lbl_ganho.Size = new System.Drawing.Size(0, 13);
+            this.lbl_ganho.TabIndex = 18;
+            // 
+            // btn_deletar
+            // 
+            this.btn_deletar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btn_deletar.Enabled = false;
+            this.btn_deletar.Location = new System.Drawing.Point(87, 203);
+            this.btn_deletar.Name = "btn_deletar";
+            this.btn_deletar.Size = new System.Drawing.Size(75, 23);
+            this.btn_deletar.TabIndex = 17;
+            this.btn_deletar.Text = "Deletar";
+            this.btn_deletar.UseVisualStyleBackColor = true;
+            this.btn_deletar.Click += new System.EventHandler(this.btn_deletar_Click);
             // 
             // label2
             // 
@@ -238,18 +323,6 @@
             this.btn_data.UseVisualStyleBackColor = true;
             this.btn_data.Click += new System.EventHandler(this.btn_data_Click);
             // 
-            // btn_deletar
-            // 
-            this.btn_deletar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btn_deletar.Enabled = false;
-            this.btn_deletar.Location = new System.Drawing.Point(87, 203);
-            this.btn_deletar.Name = "btn_deletar";
-            this.btn_deletar.Size = new System.Drawing.Size(75, 23);
-            this.btn_deletar.TabIndex = 17;
-            this.btn_deletar.Text = "Deletar";
-            this.btn_deletar.UseVisualStyleBackColor = true;
-            this.btn_deletar.Click += new System.EventHandler(this.btn_deletar_Click);
-            // 
             // responsavelSelector
             // 
             this.responsavelSelector.Location = new System.Drawing.Point(2, 39);
@@ -265,53 +338,6 @@
             this.turmaSelector.Size = new System.Drawing.Size(290, 30);
             this.turmaSelector.TabIndex = 9;
             this.turmaSelector.Turma = null;
-            // 
-            // nomeDataGridViewTextBoxColumn
-            // 
-            this.nomeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
-            this.nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
-            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-            this.nomeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // valorDataGridViewTextBoxColumn
-            // 
-            this.valorDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.valorDataGridViewTextBoxColumn.DataPropertyName = "Valor";
-            this.valorDataGridViewTextBoxColumn.HeaderText = "Valor";
-            this.valorDataGridViewTextBoxColumn.Name = "valorDataGridViewTextBoxColumn";
-            // 
-            // valorreceberDataGridViewTextBoxColumn
-            // 
-            this.valorreceberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.valorreceberDataGridViewTextBoxColumn.DataPropertyName = "Valor_receber";
-            this.valorreceberDataGridViewTextBoxColumn.HeaderText = "Valor_receber";
-            this.valorreceberDataGridViewTextBoxColumn.MaxInputLength = 7;
-            this.valorreceberDataGridViewTextBoxColumn.Name = "valorreceberDataGridViewTextBoxColumn";
-            // 
-            // dataDataGridViewTextBoxColumn
-            // 
-            this.dataDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataDataGridViewTextBoxColumn.DataPropertyName = "Data";
-            this.dataDataGridViewTextBoxColumn.HeaderText = "Data";
-            this.dataDataGridViewTextBoxColumn.Name = "dataDataGridViewTextBoxColumn";
-            this.dataDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // recebidoDataGridViewCheckBoxColumn
-            // 
-            this.recebidoDataGridViewCheckBoxColumn.DataPropertyName = "Recebido";
-            this.recebidoDataGridViewCheckBoxColumn.FalseValue = "false";
-            this.recebidoDataGridViewCheckBoxColumn.HeaderText = "Recebido";
-            this.recebidoDataGridViewCheckBoxColumn.Name = "recebidoDataGridViewCheckBoxColumn";
-            this.recebidoDataGridViewCheckBoxColumn.TrueValue = "true";
-            this.recebidoDataGridViewCheckBoxColumn.Width = 70;
-            // 
-            // Codigo_pagamento
-            // 
-            this.Codigo_pagamento.DataPropertyName = "Codigo_pagamento";
-            this.Codigo_pagamento.HeaderText = "Codigo_pagamento";
-            this.Codigo_pagamento.Name = "Codigo_pagamento";
-            this.Codigo_pagamento.Visible = false;
             // 
             // VisualizarPagamentos
             // 
@@ -332,7 +358,9 @@
             this.Controls.Add(this.lbl_nome);
             this.Controls.Add(this.tb_nome);
             this.Name = "VisualizarPagamentos";
-            this.Text = "VisualizarPagamentos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Visualizar os Pagamentos";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.VisualizarPagamentos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dg_pagamento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pagamentoBindingSource1)).EndInit();
@@ -375,5 +403,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn recebidoDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo_pagamento;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_ganho;
     }
 }

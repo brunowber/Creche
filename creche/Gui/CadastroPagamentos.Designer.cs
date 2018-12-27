@@ -290,7 +290,8 @@
             this.Controls.Add(this.gp_cadastro);
             this.Controls.Add(this.panel1);
             this.Name = "CadastroPagamentos";
-            this.Text = "CadastroCommon";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Cadastro de Pagamento";
             this.Load += new System.EventHandler(this.CadastroAluno_Load);
             this.panel1.ResumeLayout(false);
             this.gp_cadastro.ResumeLayout(false);

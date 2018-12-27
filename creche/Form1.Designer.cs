@@ -30,9 +30,9 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cadastroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.alunosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.turmasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.responsavelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alunosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagamentosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagamentosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,31 +61,31 @@
             this.cadastroToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.cadastroToolStripMenuItem.Text = "Cadastros";
             // 
-            // alunosToolStripMenuItem
-            // 
-            this.alunosToolStripMenuItem.Name = "alunosToolStripMenuItem";
-            this.alunosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.alunosToolStripMenuItem.Text = "Alunos";
-            this.alunosToolStripMenuItem.Click += new System.EventHandler(this.AlunosToolStripMenuItem_Click);
-            // 
             // turmasToolStripMenuItem
             // 
             this.turmasToolStripMenuItem.Name = "turmasToolStripMenuItem";
-            this.turmasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.turmasToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.turmasToolStripMenuItem.Text = "Turmas";
             this.turmasToolStripMenuItem.Click += new System.EventHandler(this.TurmasToolStripMenuItem_Click);
             // 
             // responsavelToolStripMenuItem
             // 
             this.responsavelToolStripMenuItem.Name = "responsavelToolStripMenuItem";
-            this.responsavelToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.responsavelToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.responsavelToolStripMenuItem.Text = "Responsavel";
             this.responsavelToolStripMenuItem.Click += new System.EventHandler(this.responsavelToolStripMenuItem_Click);
+            // 
+            // alunosToolStripMenuItem
+            // 
+            this.alunosToolStripMenuItem.Name = "alunosToolStripMenuItem";
+            this.alunosToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.alunosToolStripMenuItem.Text = "Alunos";
+            this.alunosToolStripMenuItem.Click += new System.EventHandler(this.AlunosToolStripMenuItem_Click);
             // 
             // pagamentosToolStripMenuItem
             // 
             this.pagamentosToolStripMenuItem.Name = "pagamentosToolStripMenuItem";
-            this.pagamentosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pagamentosToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
             this.pagamentosToolStripMenuItem.Text = "Pagamentos";
             this.pagamentosToolStripMenuItem.Click += new System.EventHandler(this.pagamentosToolStripMenuItem_Click);
             // 
@@ -112,7 +112,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Creche";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

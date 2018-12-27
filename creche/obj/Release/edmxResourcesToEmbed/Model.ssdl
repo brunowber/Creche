@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CrecheModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Criancas">
+    <Key>
+      <PropertyRef Name="Uid_crianca" />
+    </Key>
+    <Property Name="Uid_crianca" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Dt_nasc" Type="datetime" />
+    <Property Name="Uid_turma" Type="bigint" />
+    <Property Name="Sexo" Type="varchar" MaxLength="1" />
+    <Property Name="Ativo" Type="bit" />
+  </EntityType>
+  <EntityType Name="Pagamentos">
+    <Key>
+      <PropertyRef Name="Uid_pagamento" />
+    </Key>
+    <Property Name="Uid_pagamento" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Valor" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Valor_recebido" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Dt_vencimento" Type="datetime" />
+    <Property Name="Uid_crianca" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Responsavel">
+    <Key>
+      <PropertyRef Name="Uid_responsavel" />
+    </Key>
+    <Property Name="Uid_responsavel" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" />
+    <Property Name="Ativo" Type="bit" />
+  </EntityType>
+  <EntityType Name="Responsavel_crianca">
+    <Key>
+      <PropertyRef Name="Uid_responsavel" />
+      <PropertyRef Name="Uid_crianca" />
+    </Key>
+    <Property Name="Uid_responsavel" Type="bigint" Nullable="false" />
+    <Property Name="Uid_crianca" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Responsavel_telefone">
+    <Key>
+      <PropertyRef Name="Uid_responsavel" />
+      <PropertyRef Name="Uid_telefone" />
+    </Key>
+    <Property Name="Uid_responsavel" Type="bigint" Nullable="false" />
+    <Property Name="Uid_telefone" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Telefone">
+    <Key>
+      <PropertyRef Name="Uid_telefone" />
+    </Key>
+    <Property Name="Uid_telefone" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Turma">
+    <Key>
+      <PropertyRef Name="Uid_turma" />
+    </Key>
+    <Property Name="Uid_turma" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descricao" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK__Criancas__Uid_tu__398D8EEE">
+    <End Role="Turma" Type="Self.Turma" Multiplicity="0..1" />
+    <End Role="Criancas" Type="Self.Criancas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Turma">
+        <PropertyRef Name="Uid_turma" />
+      </Principal>
+      <Dependent Role="Criancas">
+        <PropertyRef Name="Uid_turma" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pagamento__Uid_c__47DBAE45">
+    <End Role="Criancas" Type="Self.Criancas" Multiplicity="0..1" />
+    <End Role="Pagamentos" Type="Self.Pagamentos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Criancas">
+        <PropertyRef Name="Uid_crianca" />
+      </Principal>
+      <Dependent Role="Pagamentos">
+        <PropertyRef Name="Uid_crianca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Responsav__Uid_c__534D60F1">
+    <End Role="Criancas" Type="Self.Criancas" Multiplicity="1" />
+    <End Role="Responsavel_crianca" Type="Self.Responsavel_crianca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Criancas">
+        <PropertyRef Name="Uid_crianca" />
+      </Principal>
+      <Dependent Role="Responsavel_crianca">
+        <PropertyRef Name="Uid_crianca" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Responsav__Uid_r__403A8C7D">
+    <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="1" />
+    <End Role="Responsavel_telefone" Type="Self.Responsavel_telefone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Responsavel">
+        <PropertyRef Name="Uid_responsavel" />
+      </Principal>
+      <Dependent Role="Responsavel_telefone">
+        <PropertyRef Name="Uid_responsavel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Responsav__Uid_r__52593CB8">
+    <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="1" />
+    <End Role="Responsavel_crianca" Type="Self.Responsavel_crianca" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Responsavel">
+        <PropertyRef Name="Uid_responsavel" />
+      </Principal>
+      <Dependent Role="Responsavel_crianca">
+        <PropertyRef Name="Uid_responsavel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Responsav__Uid_t__412EB0B6">
+    <End Role="Telefone" Type="Self.Telefone" Multiplicity="1" />
+    <End Role="Responsavel_telefone" Type="Self.Responsavel_telefone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Telefone">
+        <PropertyRef Name="Uid_telefone" />
+      </Principal>
+      <Dependent Role="Responsavel_telefone">
+        <PropertyRef Name="Uid_telefone" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CrecheModelStoreContainer">
+    <EntitySet Name="Criancas" EntityType="Self.Criancas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pagamentos" EntityType="Self.Pagamentos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Responsavel" EntityType="Self.Responsavel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Responsavel_crianca" EntityType="Self.Responsavel_crianca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Responsavel_telefone" EntityType="Self.Responsavel_telefone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Telefone" EntityType="Self.Telefone" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Turma" EntityType="Self.Turma" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Criancas__Uid_tu__398D8EEE" Association="Self.FK__Criancas__Uid_tu__398D8EEE">
+      <End Role="Turma" EntitySet="Turma" />
+      <End Role="Criancas" EntitySet="Criancas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pagamento__Uid_c__47DBAE45" Association="Self.FK__Pagamento__Uid_c__47DBAE45">
+      <End Role="Criancas" EntitySet="Criancas" />
+      <End Role="Pagamentos" EntitySet="Pagamentos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Responsav__Uid_c__534D60F1" Association="Self.FK__Responsav__Uid_c__534D60F1">
+      <End Role="Criancas" EntitySet="Criancas" />
+      <End Role="Responsavel_crianca" EntitySet="Responsavel_crianca" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Responsav__Uid_r__403A8C7D" Association="Self.FK__Responsav__Uid_r__403A8C7D">
+      <End Role="Responsavel" EntitySet="Responsavel" />
+      <End Role="Responsavel_telefone" EntitySet="Responsavel_telefone" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Responsav__Uid_r__52593CB8" Association="Self.FK__Responsav__Uid_r__52593CB8">
+      <End Role="Responsavel" EntitySet="Responsavel" />
+      <End Role="Responsavel_crianca" EntitySet="Responsavel_crianca" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Responsav__Uid_t__412EB0B6" Association="Self.FK__Responsav__Uid_t__412EB0B6">
+      <End Role="Telefone" EntitySet="Telefone" />
+      <End Role="Responsavel_telefone" EntitySet="Responsavel_telefone" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

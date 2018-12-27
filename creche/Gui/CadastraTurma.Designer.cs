@@ -199,7 +199,8 @@
             this.Controls.Add(this.btn_salvar);
             this.Controls.Add(this.gb_turma);
             this.Name = "CadastraTurma";
-            this.Text = "CadastraTurma";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Cadastro de Turma";
             this.Load += new System.EventHandler(this.CadastraTurma_Load);
             this.gb_turma.ResumeLayout(false);
             this.gb_turma.PerformLayout();

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using creche.Controller;
 using creche;
@@ -25,7 +18,7 @@ namespace Creche.Component
         {
             if (this.cadastroTurmaController == null)
                 this.cadastroTurmaController = new CadastroTurmaController();
-            //this.turmaBindingSource.DataSource = this.cadastroTurmaController.LoadTurmas();
+            this.turmaBindingSource.DataSource = this.cadastroTurmaController.LoadTurmas();
             this.cb_turma.SelectedIndex = -1;
             this.cb_turma.SelectedItem = null;
         }

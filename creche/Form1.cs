@@ -17,6 +17,7 @@ namespace Creche
         public Form1()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void AlunosToolStripMenuItem_Click(object sender, EventArgs e)

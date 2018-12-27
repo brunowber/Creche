@@ -50,6 +50,7 @@ namespace creche.Controller
         public void UpdatePagamento(decimal valorReceber, long _uidPagamento)
         {
             Pagamento pagamento = this.ProcurarPagamentoPorUid(_uidPagamento);
+            pagamento.Valor_recebido = valorReceber;
             this.banco.SaveChanges();
         }
 
@@ -80,32 +81,32 @@ namespace creche.Controller
 
         public List<Crianca> LoadCriancas()
         {
-            return this.banco.Criancas.ToList();
+            return this.banco.Criancas.OrderBy(o => o.Nome).ToList();
         }
 
         public List<Crianca> ProcuraCriancasPorTurma(long _uidTurma)
         {
-            return this.banco.Criancas.Where(c => c.Turma.Uid_turma == _uidTurma).ToList();
+            return this.banco.Criancas.Where(c => c.Turma.Uid_turma == _uidTurma && c.Ativo == true).ToList();
         }
 
         public List<Crianca> ProcuraCriancasPorResponsavel(long _uidResponsavel)
         {
-            return this.banco.Criancas.Where(c => c.Responsavels.FirstOrDefault().Uid_responsavel == _uidResponsavel).ToList();
+            return this.banco.Criancas.Where(c => c.Responsavels.FirstOrDefault().Uid_responsavel == _uidResponsavel && c.Ativo == true).ToList();
         }
 
         public List<Crianca> ProcuraCriancasPorNome(string nome)
         {
-            return this.banco.Criancas.Where(c => c.Nome == nome).ToList();
+            return this.banco.Criancas.Where(c => c.Nome == nome && c.Ativo == true).ToList();
         }
 
         public Pagamento ProcuraPagamentoPorAluno(Crianca crianca)
         {
-            return this.banco.Pagamentos.Where(c => c.Uid_crianca == crianca.Uid_crianca).FirstOrDefault();
+            return this.banco.Pagamentos.Where(c => c.Uid_crianca == crianca.Uid_crianca && c.Crianca.Ativo == true).FirstOrDefault();
         }
 
         public List<Pagamento> ProcuraPagamentoPorData(DateTime começo, DateTime fim)
         {
-            return this.banco.Pagamentos.Where(c => c.Dt_vencimento >= começo && c.Dt_vencimento <= fim).ToList();
+            return this.banco.Pagamentos.Where(c => c.Dt_vencimento >= começo && c.Dt_vencimento <= fim && c.Crianca.Ativo == true).ToList();
         }
     }
 }

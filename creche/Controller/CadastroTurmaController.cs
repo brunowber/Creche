@@ -35,7 +35,7 @@ namespace creche.Controller
 
         public List<Turma> LoadTurmas()
         {
-            return this.banco.Turmas.ToList();
+            return this.banco.Turmas.OrderBy(o => o.Descricao).ToList(); ;
         }
     }
 }

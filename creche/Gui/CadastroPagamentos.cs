@@ -23,6 +23,8 @@ namespace Creche.Gui
         public CadastroPagamentos()
         {
             InitializeComponent();
+            this.MaximizeBox = false;
+            this.WindowState = System.Windows.Forms.FormWindowState.Normal;
         }
 
         public virtual void Clear()

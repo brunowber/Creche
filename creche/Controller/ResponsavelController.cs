@@ -38,7 +38,7 @@ namespace creche.Controller
 
         public List<Responsavel> LoadResponsavel()
         {
-            return this.banco.Responsavels.ToList();
+            return this.banco.Responsavels.OrderBy(o => o.Nome).ToList(); ;
         }
     }
 }
